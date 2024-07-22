@@ -1,0 +1,30 @@
+#root{
+    width: 100%;
+    height: 100%;
+}
+.main-container{
+    width:100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+#qiankun_frame_container{
+    flex: 1;
+    //position: absolute;
+    //bottom: 0;
+    //right: 0;
+    //flex-direction: column;
+    //background-color: white;
+    overflow: auto;
+
+    #nav-container{
+        display: none;
+    }
+    #main-container, #erp-container,
+    .container-fixed{
+        position: static!important;
+    }
+    #main-container{
+        height: 100% !important;
+    }
+}

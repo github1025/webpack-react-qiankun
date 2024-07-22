@@ -1,0 +1,28 @@
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#qiankun_frame_container {
+  flex: 1;
+  overflow: auto;
+}
+#qiankun_frame_container #nav-container {
+  display: none;
+}
+#qiankun_frame_container #main-container, #qiankun_frame_container #erp-container,
+#qiankun_frame_container .container-fixed {
+  position: static !important;
+}
+#qiankun_frame_container #main-container {
+  height: 100% !important;
+}
+
+/*# sourceMappingURL=index.css.map */

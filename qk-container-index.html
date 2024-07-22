@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+<!--	<link rel="stylesheet" href="./public/css/element_2.css" />-->
+	<title>Document</title>
+</head>
+<body>
+	<div id="qk-container"></div>
+</body>
+<script entry>
+	if (window.__POWERED_BY_QIANKUN__) {
+	      window.purehtml = window.qiankunLifecycle;
+	    }
+</script>
+<script>
+	function loadScript(src,sAsync = false) {
+		function load(src){
+			let script = document.createElement('script');
+			script.src = src
+			if( sAsync ){
+				script.async = true
+			}
+			script.entry = true
+			script.onerror = function() {
+				console.error('加载脚本时发生错误');
+			};
+			document.body.appendChild(script);
+		}
+
+		if( src ){
+			if( typeof src == "string" ){
+				load(src)
+			}else{
+				for (let i = 0; i < src.length; i++) {
+					load(src[i])
+				}
+			}
+		}
+	}
+
+	function getBundlePath() {
+		const pathname = document.location.pathname
+		let jsBundle = null;
+		let menuListMap = `${window.MENU_LIST_MAP}`
+		for (const path in menuListMap) {
+			if ( path && pathname == path.split("?")[0] ) {
+				jsBundle = menuListMap[path]
+				break;
+			}
+		}
+		console.log("jsBundle", jsBundle)
+		return jsBundle ? `http://localhost:9001/${jsBundle}-bundle.js`:``
+	}
+
+		loadScript([
+			getBundlePath()
+		])
+</script>
+</html>
