@@ -11,14 +11,12 @@ log/
 public/import-files/
 .sass-cache
 design/
-*.config.js
 *.conf
 *.DS_Store
 web/.DS_Store
 conf/text
 conf/logback.xml
-public/
-public/js/build/*
+public/js/
 public/css/fan.css
 public/css/fan.css.map
 app/views/main.scala.html
