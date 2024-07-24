@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "entry=main-router,index,login version=dev webpack serve --open --mode development",
+    "start": "entry=main-router,index,login version=dev webpack serve --mode development",
     "start-a": "webpack-dev-server --open --mode development"
   },
   "keywords": [],
@@ -17,7 +17,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.9.5",
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.0.0",
-    "@babel/preset-react": "7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.13.10",
     "babel-loader": "8.1.0",
     "babel-preset-mobx": "^2.0.0",

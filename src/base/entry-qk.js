@@ -1,5 +1,5 @@
 import { bootstrap,mount, unmount, update } from './util'
-
+import init from "../../webpack_plugins/DomToCodeWebpackPlugin/init";
 
 const baseEntry = (App) => {
 	const initWindow=()=>{
@@ -16,6 +16,7 @@ const baseEntry = (App) => {
 	}
 
 	initWindow()
+	init()
 }
 
 export default baseEntry

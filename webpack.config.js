@@ -2,6 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 引入插件
 const AnalyzeWebpackPlugin = require('./webpack_plugins/analyze-webpack-plugin.js');
+const { DomToCodeWebpackPlugin, goCode } = require('./webpack_plugins/DomToCodeWebpackPlugin/index.js')
 const webpack = require('webpack');
 const packageName = require('./package.json').name;
 const getEntry = require('./webpack_config/getEntry')
@@ -108,6 +109,8 @@ const config = {
 		// 	template: './index2.html',    // 模板文件位置
 		// 	chunks: ['index']
 		// }),
+		// new AnalyzeWebpackPlugin(),
+		new DomToCodeWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			title: 'index',
 			// filename: "login.html",
@@ -123,7 +126,6 @@ const config = {
 			'process.env.menus': JSON.stringify(menuList),
 			'process.env.dirname': JSON.stringify(__dirname)
 		})
-		// new AnalyzeWebpackPlugin()
 	],
 	devServer: {
 		// contentBase: './dist',
@@ -138,13 +140,28 @@ const config = {
 		},
 		client: {
 			overlay: false,
-			// webSocketURL: {
-			// 	hostname: 'localhost',
-			// 	port: 9001,
-			// 	protocol: 'ws',
-			// 	pathname: '/ws'
-			// },
+			webSocketURL: {
+				hostname: 'localhost',
+				port: 9001,
+				protocol: 'ws',
+				pathname: '/ws'
+			},
 		},
+		setupMiddlewares: (middlewares, devServer) => {
+			// 允许跨域请求
+			devServer.app.use((req, res, next) => {
+				res.header('Access-Control-Allow-Origin', '*');
+				res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+				next();
+			});
+			devServer.app.get('/dom-to-code', (req, response) => {
+				console.log("req.query", req.query)
+				goCode(req.query,(res)=>{
+					response.send(res);
+				})
+			});
+			return middlewares;
+		}
 	}
 }
 // const pages = Object.keys(config.entry);

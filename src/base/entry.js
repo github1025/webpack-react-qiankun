@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import init from "../../webpack_plugins/DomToCodeWebpackPlugin/init";
 export default function baseEntry(App) {
 	const initWindow=()=>{
 		window.STATIC_PATH = process.env.staticPath
@@ -16,6 +17,7 @@ export default function baseEntry(App) {
 		console.log("window.MENU_LIST", window.MENU_LIST)
 		console.log("window.MENU_LIST_MAP", window.MENU_LIST_MAP)
 		render()
+		// init()
 	}
 	const render = ()=> {
 		ReactDOM.render(
